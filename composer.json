@@ -1,0 +1,13 @@
+{
+    "name": "silvanite/agencms",
+    "description": "Laravel CMS Library for Agencms",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Marco Mark",
+            "email": "marco@silvanite.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
