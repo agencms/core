@@ -4,29 +4,42 @@ namespace Silvanite\Agencms;
 
 class Route
 {
+    public static $route;
+    public static $instance;
+
     protected const ROUTE_METHODS = [
         'GET', 'POST', 'PUT', 'DELETE'
     ];
 
-    protected $slug;
-    protected $name;
-    protected $type;
-    protected $endpoints;
-    protected $fields;
+    protected static function instance()
+    {
+        if (static::$instance === null) 
+        {
+            static::$instance = new Route;
+        }
+
+        return static::$instance;
+    }
 
     /**
-     *
+     * Initialise a new route. This must be called before any other method on the class
+     * 
      * @param string $slug
      * @param string $name
      * @param string|Array $endpoints
+     * @param string $type
+     * @return Silvanite\Agencms\Route
      */
-    public function __construct($slug, $name, $endpoints = [], $type = Config::TYPE_COLLECTION)
+    public static function init($slug, $name, $endpoints = [], $type = Config::TYPE_COLLECTION)
     {
-        $this->slug = $slug;
-        $this->name = $name;
-        $this->type = $type;
-        $this->endpoints = $this->makeEndpoints($endpoints);
-        $this->fields = collect([]);
+        self::$route = collect([]);
+        self::$route->slug = $slug;
+        self::$route->name = $name;
+        self::$route->type = $type;
+        self::$route->endpoints = self::makeEndpoints($endpoints);
+        self::$route->fields = collect([]);
+
+        return self::instance();
     }
 
     /**
@@ -35,10 +48,10 @@ class Route
      * @param string $endpoints
      * @return Array
      */
-    private function makeEndpoints($endpoints)
+    private static function makeEndpoints($endpoints)
     {
         if (is_string($endpoints)) 
-            return $this->makeEndpointsFromString($endpoints, self::ROUTE_METHODS);
+            return self::makeEndpointsFromString($endpoints, self::ROUTE_METHODS);
 
         return $endpoints;
     }
@@ -50,7 +63,7 @@ class Route
      * @param Array $methods
      * @return Array
      */
-    private function makeEndpointsFromString($endpoint, $methods)
+    private static function makeEndpointsFromString($endpoint, $methods)
     {
         return collect($methods)->map(function ($method) use ($endpoint) {
             return [$method => $endpoint];
@@ -66,9 +79,9 @@ class Route
      * @param boolean $readonly
      * @return Silvanite\Agencms\Route
      */
-    public function addField($key, $name, $type, $readonly = false, $size = 12)
+    public static function addField($key, $name, $type, $readonly = false, $size = 12)
     {
-        $this->fields->put(
+        self::$route->put(
             $key, collect()->put('key', $key)
                            ->put('name', $name)
                            ->put('type', $type)
@@ -76,7 +89,17 @@ class Route
                            ->put('size', $size)
         );
 
-        return $this;
+        return self::instance();
+    }
+
+    /**
+     * Return the slug for the route
+     *
+     * @return string
+     */
+    public static function slug()
+    {
+        return self::$route->slug;
     }
 
     /**
@@ -84,28 +107,8 @@ class Route
      *
      * @return Illuminate\Support\Collection
      */
-    public function get()
+    public static function get()
     {
-        return collect([
-            'slug' => $this->slug,
-            'endpoints' => $this->endpoints->collapse(),
-            'name' => $this->name,
-            'type' => $this->type,
-            'fields' => $this->fields
-        ]);
-    }
-
-    /**
-     * Dynamic getter for route properties
-     *
-     * @param string $key
-     * @return void
-     */
-    public function __get($key)
-    {
-        if (property_exists($this, $key))
-            return $this->$key;
-
-        return false;
+        return self::$route;
     }
 }

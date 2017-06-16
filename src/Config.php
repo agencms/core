@@ -26,7 +26,7 @@ class Config
      */
     public function registerRoute(Route $route)
     {
-        return $this->routes[$route->slug] = $route->get();
+        return $this->routes[$route->slug()] = $route->get();
     }
 
     /**
