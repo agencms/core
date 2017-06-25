@@ -15,7 +15,7 @@ class Config
      */
     public function __construct(Array $routes = [])
     {
-        $this->routes = collect($routes);
+        $this->routes = $routes;
     }
 
     /**
