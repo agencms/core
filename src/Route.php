@@ -4,21 +4,15 @@ namespace Silvanite\Agencms;
 
 class Route
 {
-    public static $route;
-    public static $instance;
+    private $route;
 
     protected const ROUTE_METHODS = [
         'GET', 'POST', 'PUT', 'DELETE'
     ];
 
-    protected static function instance()
+    protected function __construct()
     {
-        if (static::$instance === null) 
-        {
-            static::$instance = new Route;
-        }
-
-        return static::$instance;
+        $this->route = [];
     }
 
     /**
@@ -32,14 +26,16 @@ class Route
      */
     public static function init($slug, $name, $endpoints = [], $type = Config::TYPE_COLLECTION)
     {
-        self::$route = collect([]);
-        self::$route->slug = $slug;
-        self::$route->name = $name;
-        self::$route->type = $type;
-        self::$route->endpoints = self::makeEndpoints($endpoints);
-        self::$route->fields = collect([]);
+        $instance = new static();
 
-        return self::instance();
+        $instance->route = [];
+        $instance->route['slug'] = $slug;
+        $instance->route['name'] = $name;
+        $instance->route['type'] = $type;
+        $instance->route['endpoints'] = self::makeEndpoints($endpoints);
+        $instance->route['groups'] = collect([]);
+
+        return $instance;
     }
 
     /**
@@ -67,29 +63,22 @@ class Route
     {
         return collect($methods)->map(function ($method) use ($endpoint) {
             return [$method => $endpoint];
-        });
+        })->collapse();
     }
 
     /**
-     * Registers a new API endpoint field
+     * Registers a new API endpoint group
      *
-     * @param string $key
-     * @param string $name
-     * @param string $type
-     * @param boolean $readonly
+     * @param Silvanite\Agencms\Group ...$groups
      * @return Silvanite\Agencms\Route
      */
-    public static function addField($key, $name, $type, $readonly = false, $size = 12)
+    public function addGroup(...$groups)
     {
-        self::$route->put(
-            $key, collect()->put('key', $key)
-                           ->put('name', $name)
-                           ->put('type', $type)
-                           ->put('readonly', $readonly)
-                           ->put('size', $size)
-        );
+        collect($groups)->map(function ($group) {
+            $this->route['groups'][] =  $group->get();
+        });
 
-        return self::instance();
+        return $this;
     }
 
     /**
@@ -97,18 +86,18 @@ class Route
      *
      * @return string
      */
-    public static function slug()
+    public function slug()
     {
-        return self::$route->slug;
+        return $this->route['slug'];
     }
 
     /**
      * Get the entire route configuration
      *
-     * @return Illuminate\Support\Collection
+     * @return Array
      */
-    public static function get()
+    public function get()
     {
-        return self::$route;
+        return $this->route;
     }
 }
