@@ -2,10 +2,15 @@
 
 namespace Silvanite\Agencms;
 
+use Silvanite\Agencms\Option;
 use Silvanite\Agencms\Relationship;
+
 class Field
 {
     protected $field;
+
+    public const MODE_CHECKBOX = 'checkbox';
+    public const MODE_SELECT = 'select';
 
     /**
      * Set the defaults for a new Field
@@ -20,7 +25,9 @@ class Field
             'type' => 'string',
             'size' => 12,
             'list' => false,
-            'max' => 1
+            'max' => 1,
+            'choices' => collect([]),
+            'mode' => '',
             'related' => collect([])
         ];
     }
@@ -78,6 +85,11 @@ class Field
         return self::init('image', $key, $name);
     }
 
+    public static function select(string $key = null, string $name = null)
+    {
+        return self::init('select', $key, $name);
+    }
+
     public static function related(string $key = null, string $name = null)
     {
         return self::init('related', $key, $name);
@@ -89,7 +101,7 @@ class Field
      * @param int $number
      * @return Silvanite\Agencms\Field
      */
-    public function multi(int $number = 50)
+    public function multiple(int $number = 50)
     {
         $this->field['max'] = $number;
 
@@ -103,7 +115,7 @@ class Field
      */
     public function single()
     {
-        return $this->multi(1);
+        return $this->multiple(1);
     }
 
     /**
@@ -240,6 +252,42 @@ class Field
     {
         return $this->size(12);
     }
+
+    /**
+     * Set the available choices for a select field as an array of key value pairs
+     *
+     * @param Option $choices
+     * @return Silvanite\Agencms\Field
+     */
+    public function addOption(Option ...$choices)
+    {
+        collect($choices)->map(function ($choice) {
+            $this->field['choices']->push($choice->get());
+        });
+
+        return $this;
+    }
+
+    /**
+     * Set the available choices for a select field as an array of key value pairs
+     * taken directly from a supplied array
+     *
+     * @param array $choices
+     * @return Silvanite\Agencms\Field
+     */
+    public function addOptions(array $choices)
+    {
+        collect($choices)->map(function ($choice) {
+            $this->field['choices']->push([
+                'value' => strtolower($choice),
+                'text' => $choice
+            ]);
+        });
+
+        return $this;
+    }
+
+
     public function model(Relationship $model)
     {
         $this->field['related'] = $model->get();
@@ -247,4 +295,36 @@ class Field
         return $this;
     }
 
+    /**
+     * Set the mode for select fields
+     *
+     * @param string $mode
+     * @return Silvanite\Agencms\Field
+     */
+    public function mode(string $mode = self::MODE_SELECT)
+    {
+        $this->field['mode'] = $mode;
+
+        return $this;
+    }
+
+    /**
+     * Helper method to set the select mode to checkboxes
+     *
+     * @return Silvanite\Agencms\Field
+     */
+    public function checkbox()
+    {
+        return $this->mode(self::MODE_CHECKBOX);
+    }
+
+    /**
+     * Helper method to set the select mode to dropdown
+     *
+     * @return Silvanite\Agencms\Field
+     */
+    public function dropdown()
+    {
+        return $this->mode(self::MODE_SELECT);
+    }
 }
