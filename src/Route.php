@@ -81,6 +81,13 @@ class Route
         return $this;
     }
 
+    public function hidden()
+    {
+        $this->route['type'] = Config::TYPE_HIDDEN;
+
+        return $this;
+    }
+
     /**
      * Return the slug for the route
      *
