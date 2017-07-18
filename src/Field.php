@@ -2,6 +2,7 @@
 
 namespace Silvanite\Agencms;
 
+use Silvanite\Agencms\Relationship;
 class Field
 {
     protected $field;
@@ -20,6 +21,7 @@ class Field
             'size' => 12,
             'list' => false,
             'max' => 1
+            'related' => collect([])
         ];
     }
 
@@ -74,6 +76,11 @@ class Field
     public static function image(string $key = null, string $name = null)
     {
         return self::init('image', $key, $name);
+    }
+
+    public static function related(string $key = null, string $name = null)
+    {
+        return self::init('related', $key, $name);
     }
 
     /**
@@ -233,4 +240,11 @@ class Field
     {
         return $this->size(12);
     }
+    public function model(Relationship $model)
+    {
+        $this->field['related'] = $model->get();
+
+        return $this;
+    }
+
 }
