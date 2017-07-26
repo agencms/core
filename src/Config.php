@@ -9,14 +9,44 @@ class Config
     public const TYPE_HIDDEN = 'hidden';
 
     protected $routes;
+    protected $plugins;
 
     /**
      *
      * @param Array $routes
+     * @param Array $plugins
      */
-    public function __construct(Array $routes = [])
+    public function __construct(Array $routes = [], Array $plugins = [])
     {
         $this->routes = $routes;
+        $this->plugins = $plugins;
+    }
+
+    /**
+     * Add a plugin to the config loader. The loader will iterate through all
+     * plugins and load each one as middlware. This allows other packages to
+     * include their configurations in the /agencms/config route.
+     *
+     * @param string $plugin
+     * @return boolean
+     */
+    public function registerPlugin(string $plugin)
+    {
+        if (!in_array($plugin, $this->plugins)) {
+            $this->plugins[] = $plugin;
+        }
+
+        return true;
+    }
+
+    /**
+     * Return an array of all registered plugins
+     *
+     * @return Array
+     */
+    public function plugins()
+    {
+        return $this->plugins;
     }
 
     /**
