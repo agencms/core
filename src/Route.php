@@ -4,29 +4,38 @@ namespace Silvanite\Agencms;
 
 class Route
 {
+    private $route;
+
     protected const ROUTE_METHODS = [
         'GET', 'POST', 'PUT', 'DELETE'
     ];
 
-    protected $slug;
-    protected $name;
-    protected $type;
-    protected $endpoints;
-    protected $fields;
+    protected function __construct()
+    {
+        $this->route = [];
+    }
 
     /**
-     *
+     * Initialise a new route. This must be called before any other method on the class
+     * 
      * @param string $slug
      * @param string $name
      * @param string|Array $endpoints
+     * @param string $type
+     * @return Silvanite\Agencms\Route
      */
-    public function __construct($slug, $name, $endpoints = [], $type = Config::TYPE_COLLECTION)
+    public static function init($slug, $name, $endpoints = [], $type = Config::TYPE_COLLECTION)
     {
-        $this->slug = $slug;
-        $this->name = $name;
-        $this->type = $type;
-        $this->endpoints = $this->makeEndpoints($endpoints);
-        $this->fields = collect([]);
+        $instance = new static();
+
+        $instance->route = [];
+        $instance->route['slug'] = $slug;
+        $instance->route['name'] = $name;
+        $instance->route['type'] = $type;
+        $instance->route['endpoints'] = self::makeEndpoints($endpoints);
+        $instance->route['groups'] = collect([]);
+
+        return $instance;
     }
 
     /**
@@ -35,10 +44,10 @@ class Route
      * @param string $endpoints
      * @return Array
      */
-    private function makeEndpoints($endpoints)
+    private static function makeEndpoints($endpoints)
     {
         if (is_string($endpoints)) 
-            return $this->makeEndpointsFromString($endpoints, self::ROUTE_METHODS);
+            return self::makeEndpointsFromString($endpoints, self::ROUTE_METHODS);
 
         return $endpoints;
     }
@@ -50,62 +59,52 @@ class Route
      * @param Array $methods
      * @return Array
      */
-    private function makeEndpointsFromString($endpoint, $methods)
+    private static function makeEndpointsFromString($endpoint, $methods)
     {
         return collect($methods)->map(function ($method) use ($endpoint) {
             return [$method => $endpoint];
-        });
+        })->collapse();
     }
 
     /**
-     * Registers a new API endpoint field
+     * Registers a new API endpoint group
      *
-     * @param string $key
-     * @param string $name
-     * @param string $type
-     * @param boolean $readonly
+     * @param Silvanite\Agencms\Group ...$groups
      * @return Silvanite\Agencms\Route
      */
-    public function addField($key, $name, $type, $readonly = false, $size = 12)
+    public function addGroup(...$groups)
     {
-        $this->fields->put(
-            $key, collect()->put('key', $key)
-                           ->put('name', $name)
-                           ->put('type', $type)
-                           ->put('readonly', $readonly)
-                           ->put('size', $size)
-        );
+        collect($groups)->map(function ($group) {
+            $this->route['groups'][] =  $group->get();
+        });
+
+        return $this;
+    }
+
+    public function hidden()
+    {
+        $this->route['type'] = Config::TYPE_HIDDEN;
 
         return $this;
     }
 
     /**
-     * Get the entire route configuration
+     * Return the slug for the route
      *
-     * @return Illuminate\Support\Collection
+     * @return string
      */
-    public function get()
+    public function slug()
     {
-        return collect([
-            'slug' => $this->slug,
-            'endpoints' => $this->endpoints->collapse(),
-            'name' => $this->name,
-            'type' => $this->type,
-            'fields' => $this->fields
-        ]);
+        return $this->route['slug'];
     }
 
     /**
-     * Dynamic getter for route properties
+     * Get the entire route configuration
      *
-     * @param string $key
-     * @return void
+     * @return Array
      */
-    public function __get($key)
+    public function get()
     {
-        if (property_exists($this, $key))
-            return $this->$key;
-
-        return false;
+        return $this->route;
     }
 }
