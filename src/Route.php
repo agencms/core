@@ -75,7 +75,7 @@ class Route
     public function addGroup(...$groups)
     {
         collect($groups)->map(function ($group) {
-            $this->route['groups'][] =  $group->get();
+            $this->route['groups'][] = $group->get();
         });
 
         return $this;
