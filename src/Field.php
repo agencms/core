@@ -33,6 +33,7 @@ class Field
             'mode' => '',
             'link' => '',
             'related' => collect([]),
+            'ratio' => '',
         ];
     }
 
@@ -421,6 +422,23 @@ class Field
     public function link(string $linkedField)
     {
         $this->field['link'] = $linkedField;
+
+        return $this;
+    }
+
+    /**
+     * Set the desired image ratio to be requested from the CMS. The UI will
+     * automatically resize any uploaded image to match this ratio.
+     *
+     * @param int $width
+     * @param int $height
+     * @return Silvanite\Agencms\Field
+     */
+    public function ratio(int $width, int $height)
+    {
+        if (!$width || !$height) return $this;
+
+        $this->field['ratio'] = "{$width}:{$height}";
 
         return $this;
     }
