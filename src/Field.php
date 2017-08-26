@@ -25,7 +25,9 @@ class Field
             'type' => 'string',
             'size' => 12,
             'list' => false,
-            'max' => 1,
+            'min' => 0,
+            'max' => 0,
+            'rows' => 1,
             'choices' => collect([]),
             'mode' => '',
             'related' => collect([])
@@ -62,7 +64,12 @@ class Field
      */
     public static function string(string $key = null, string $name = null)
     {
-        return self::init('string', $key, $name);
+        $instance = self::init('string', $key, $name);
+
+        $instance->minLength(0);
+        $instance->maxLength(0);
+
+        return $instance;
     }
 
     public static function number(string $key = null, string $name = null)
@@ -96,6 +103,40 @@ class Field
     }
 
     /**
+     * Set the number of rows allowed (e.g. text fields)
+     *
+     * @param int $rows
+     * @return Silvanite\Agencms\Field
+     */
+    public function rows(int $rows)
+    {
+        $this->field['rows'] = $rows;
+
+        return $this;
+    }
+
+    /**
+     * Helper method to set a text area to be single-line.
+     *
+     * @return Silvanite\Agencms\Field
+     */
+    public function singleline()
+    {
+        return $this->rows(1);
+    }
+
+    /**
+     * Helper method to set a text area to be multi-line.
+     *
+     * @param int $rows
+     * @return Silvanite\Agencms\Field
+     */
+    public function multiline(int $rows = 5)
+    {
+        return $this->rows($rows);
+    }
+
+    /**
      * Allow multiple image uploads on an image field
      *
      * @param int $number
@@ -116,6 +157,32 @@ class Field
     public function single()
     {
         return $this->multiple(1);
+    }
+
+    /**
+     * Limit input to a maximum of X chars
+     *
+     * @param int $number
+     * @return Silvanite\Agencms\Field
+     */
+    public function maxLength(int $number = 50)
+    {
+        $this->field['max'] = $number;
+
+        return $this;
+    }
+
+    /**
+     * Require the input to be at least X chars
+     *
+     * @param int $number
+     * @return Silvanite\Agencms\Field
+     */
+    public function minLength(int $number = 0)
+    {
+        $this->field['min'] = $number;
+
+        return $this;
     }
 
     /**
