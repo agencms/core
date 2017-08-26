@@ -11,6 +11,7 @@ class Field
 
     public const MODE_CHECKBOX = 'checkbox';
     public const MODE_SELECT = 'select';
+    public const MODE_SLUG = 'slug';
 
     /**
      * Set the defaults for a new Field
@@ -398,5 +399,15 @@ class Field
     public function dropdown()
     {
         return $this->mode(self::MODE_SELECT);
+    }
+
+    /**
+     * Helper method to set text input mode to slug
+     *
+     * @return Silvanite\Agencms\Field
+     */
+    public function slug()
+    {
+        return $this->mode(self::MODE_SLUG);
     }
 }
