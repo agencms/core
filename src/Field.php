@@ -31,6 +31,7 @@ class Field
             'rows' => 1,
             'choices' => collect([]),
             'mode' => '',
+            'link' => '',
             'related' => collect([]),
         ];
     }
@@ -409,5 +410,18 @@ class Field
     public function slug()
     {
         return $this->mode(self::MODE_SLUG);
+    }
+
+    /**
+     * Link the output of a field to the input of another
+     *
+     * @param string $linkedField
+     * @return Silvanite\Agencms\Field
+     */
+    public function link(string $linkedField)
+    {
+        $this->field['link'] = $linkedField;
+
+        return $this;
     }
 }
