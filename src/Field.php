@@ -30,7 +30,7 @@ class Field
             'rows' => 1,
             'choices' => collect([]),
             'mode' => '',
-            'related' => collect([])
+            'related' => collect([]),
         ];
     }
 
@@ -354,7 +354,12 @@ class Field
         return $this;
     }
 
-
+    /**
+     * Define the target model for a relationship field
+     *
+     * @param Relationship $model
+     * @return Silvanite\Agencms\Field
+     */
     public function model(Relationship $model)
     {
         $this->field['related'] = $model->get();
