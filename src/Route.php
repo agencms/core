@@ -34,6 +34,7 @@ class Route
         $instance->route['type'] = $type;
         $instance->route['endpoints'] = self::makeEndpoints($endpoints);
         $instance->route['groups'] = collect([]);
+        $instance->route['icon'] = 'filter_list';
 
         return $instance;
     }
@@ -96,6 +97,19 @@ class Route
     public function slug()
     {
         return $this->route['slug'];
+    }
+
+    /**
+     * Set the CMS Icon for this Route
+     *
+     * @param string $key
+     * @return Silvanite\Agencms\Route
+     */
+    public function icon(string $key)
+    {
+        $this->route['icon'] = $key;
+        
+        return $this;
     }
 
     /**
