@@ -4,12 +4,17 @@ namespace Silvanite\Agencms\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Silvanite\Agencms\Config;
+use Silvanite\Agencms\Listeners\EloquentListener;
+use Silvanite\AgencmsBlog\BlogCategory;
 use Gate;
+use Event;
 use Silvanite\Brandenburg\Policy;
 use Silvanite\Brandenburg\Permission;
+use Illuminate\Database\Eloquent\Model;
 
 class AgencmsServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap the application services.
      *
