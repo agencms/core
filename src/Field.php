@@ -9,9 +9,9 @@ class Field
 {
     protected $field;
 
-    public const MODE_CHECKBOX = 'checkbox';
-    public const MODE_SELECT = 'select';
-    public const MODE_SLUG = 'slug';
+    const MODE_CHECKBOX = 'checkbox';
+    const MODE_SELECT = 'select';
+    const MODE_SLUG = 'slug';
 
     /**
      * Set the defaults for a new Field

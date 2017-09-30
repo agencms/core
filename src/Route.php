@@ -6,7 +6,7 @@ class Route
 {
     private $route;
 
-    protected const ROUTE_METHODS = [
+    const ROUTE_METHODS = [
         'GET', 'POST', 'PUT', 'DELETE'
     ];
 
