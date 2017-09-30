@@ -34,6 +34,7 @@ class Field
             'link' => '',
             'related' => collect([]),
             'ratio' => '',
+            'imagesize' => null,
         ];
     }
 
@@ -433,13 +434,18 @@ class Field
      *
      * @param int $width
      * @param int $height
+     * @param bool $resize
      * @return Silvanite\Agencms\Field
      */
-    public function ratio(int $width, int $height)
+    public function ratio(int $width, int $height, bool $resize = false)
     {
         if (!$width || !$height) return $this;
 
         $this->field['ratio'] = "{$width}:{$height}";
+
+        if ($resize) {
+            $this->field['imagesize'] = "{$width},{$height}";
+        }
 
         return $this;
     }
