@@ -7,21 +7,7 @@ namespace Silvanite\Agencms\Traits;
  */
 trait HasRepeaterFields
 {
-    /**
-     * Hook into the saving event for the Model to pre-process fields for
-     * maintaining compatibility with Agencms. The model must have an array
-     * assigned to a $repeaters variable!!!
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::saving(function($model) {
-            static::processRepeatersForSaving($model);
-        });
-    }
+    protected $attributes = null;
 
     /**
      * Process all repeater fields
@@ -29,14 +15,21 @@ trait HasRepeaterFields
      * @param * $model
      * @return void
      */
-    protected static function processRepeatersForSaving($model)
+    public function processRepeatersForSaving()
     {
-        collect($model->repeaters)->map(function($item) use (&$model) {
-            $model[$item] = collect($model[$item])->map(function(&$repeater) use ($item, $model) {
+        collect($this->repeaters)->map(function($item) use (&$model) {
+            $this[$item] = collect($this[$item])->map(function(&$repeater) use ($item) {
+                $returnAsString = false;
+
+                if (is_string($repeater)) {
+                    $repeater = (array) collect(json_decode($repeater))->first();
+                }
+
                 $repeater['fields'] = collect($repeater['fields'])
-                    ->map(function($field) use ($model, &$repeater, $item) {
+                    ->map(function($field) use (&$repeater, $item) {
+                        $field = (array) $field;
                         if ($field['type'] === 'image') {
-                            static::saveRepeaterImage($item, $repeater, $model, $field);
+                            $this->saveRepeaterImage($item, $repeater, $field);
                         }
 
                         return $field;
@@ -45,6 +38,8 @@ trait HasRepeaterFields
                 return $repeater;
             });
         });
+
+        return $this;
     }
 
     /**
@@ -56,7 +51,7 @@ trait HasRepeaterFields
      * @param * $field
      * @return void
      */
-    private static function saveRepeaterImage($item, &$repeater, $model, &$field)
+    protected function saveRepeaterImage($item, &$repeater, &$field)
     {
         /**
          * Ignore this image field if it is empty
@@ -70,20 +65,27 @@ trait HasRepeaterFields
          */
         $imageKey = sprintf("%s-%s-%s", $item, $repeater['key'], $field['key']);
 
-        $field['content'] = "{$imageKey}.medialibrary.key";
-
         /**
          * The CMS returns the image URL if the original image has not been
-         * modified, so we don't need to do anything
+         * modified, so we need to lookup the images key and replace the filename
+         * with the original key in the attributes
          */
-        if (is_string($image = $field['content'])) {
+        if (is_string($image = ((array) $field)['content'])) {
+            $this->getMedia('default')
+                ->each(function ($media, $key) use ($image, &$field) {
+                    $mediaImage = config('app.url') . $media->getUrl();
+                    if ($mediaImage === $image) {
+                        $field = (array) $field;
+                        $field['content'] = $media->name;
+                    }
+                });
             return;
         }
         
         /**
          * Delete any existing image.
          */
-        $model->getMedia('default', ['key' => $imageKey])
+        $this->getMedia('default', ['key' => $imageKey])
             ->each(function ($media, $key) {
                 $media->delete();
             });
@@ -97,7 +99,7 @@ trait HasRepeaterFields
             pathinfo($image['name'], PATHINFO_EXTENSION)
         );
 
-        $model->addMediaFromBase64($image['image'])
+        $this->addMediaFromBase64($image['image'])
         ->usingFileName($useName)
         ->usingName($imageKey)
         ->withCustomProperties([
@@ -106,40 +108,12 @@ trait HasRepeaterFields
             'height' => $image['height'],
             'width' => $image['width']
         ])->toMediaCollection();
-    }
 
-    /**
-     * When the model with this trait is accessed, we need to return the full
-     * image Url instead of the media library key stored in the database. We do
-     * this automatically by extending the default model method which returns all
-     * the model's attributes.
-     *
-     * @return void
-     */
-    protected function getArrayableAttributes()
-    {
-        parent::getArrayableAttributes();
-
-        foreach ($this->attributes as $key => $value) {
-            if (!collect($this->repeaters)->contains($key)) {
-                continue;
-            };
-
-            $this->attributes[$key] = collect(json_decode($this->attributes[$key], true))->map(function(&$repeater) {
-                $repeater['fields'] = collect($repeater['fields'])
-                    ->map(function($field) use (&$repeater) {
-                        if ($field['type'] === 'image') {
-                            $field['content'] = $this->getRepeaterImageUrl($field['content']);
-                        }
-
-                        return $field;
-                    });
-
-                return $repeater;
-            });
-        }
-
-        return $this->getArrayableItems($this->attributes);
+        /**
+         * Save the key instead of the binary data to the database so we can
+         * look it up again when retrieving the content
+         */
+        $field['content'] = "{$imageKey}.medialibrary.key";
     }
 
     /**
@@ -148,8 +122,10 @@ trait HasRepeaterFields
      * @param string $key
      * @return void
      */
-    private function getRepeaterImageUrl(string $key)
+    private function getRepeaterImageUrl($key)
     {
+        if (!is_string($key)) return null;
+
         if ($media = $this->getFirstMedia('default', ['key' => str_replace('.medialibrary.key', '', $key)]))
             return config('app.url') . $media->getUrl();
 
