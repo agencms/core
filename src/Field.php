@@ -25,7 +25,7 @@ class Field
             'name' => 'New Field',
             'type' => 'string',
             'size' => 12,
-            'list' => false,
+            'list' => 0,
             'min' => 0,
             'max' => 0,
             'rows' => 1,
@@ -217,11 +217,12 @@ class Field
     /**
      * Determine if a field should be displayed in the list view
      *
+     * @param int $position
      * @return Silvanite\Agencms\Field
      */
-    public function list()
+    public function list(int $position = 50)
     {
-        $this->field['list'] = true;
+        $this->field['list'] = $position;
 
         return $this;
     }
