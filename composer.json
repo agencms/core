@@ -19,5 +19,5 @@
                 "AgencmsConfig": "Silvanite\\Agencms\\Facades\\ConfigFacade"
             }
         }
-    },
+    }
 }
