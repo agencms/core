@@ -19,12 +19,30 @@ trait HasImages
         collect($this->images)->map(function($item) {
             $imageRequest = Request::get($item);
 
+            if (!$imageRequest) {
+                $this->deleteImage($item);
+            }
+
             if (is_array($imageRequest) && array_key_exists('name', $imageRequest)) {
                 $this->saveImage($item, $imageRequest);
             }
         });
 
         return $this;
+    }
+
+    /**
+     * Delete an image file if it has been removed in the UI
+     *
+     * @param string $imageKey
+     * @return void
+     */
+    private function deleteImage($imageKey)
+    {
+        $this->getMedia('default', ['key' => $imageKey])
+            ->each(function ($media, $key) {
+                $media->delete();
+            });
     }
 
     /**
