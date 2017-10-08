@@ -54,16 +54,18 @@ trait HasRepeaterFields
     protected function saveRepeaterImage($item, &$repeater, &$field)
     {
         /**
-         * Ignore this image field if it is empty
-         */
-        if (!$field['content']) {
-            return;
-        }
-
-        /**
          * Generate a unique image key for saving/loading
          */
         $imageKey = sprintf("%s-%s-%s", $item, $repeater['key'], $field['key']);
+
+        /**
+         * Delete the image if an empty value is passed through because it has
+         * been deleted in the UI.
+         */
+        if (!$field['content']) {
+            $this->deleteImage($imageKey);
+            return;
+        }
 
         /**
          * The CMS returns the image URL if the original image has not been
@@ -85,10 +87,7 @@ trait HasRepeaterFields
         /**
          * Delete any existing image.
          */
-        $this->getMedia('default', ['key' => $imageKey])
-            ->each(function ($media, $key) {
-                $media->delete();
-            });
+        $this->deleteImage($imageKey);
 
         /**
          * Because of an issue with the media library we need to save the image
