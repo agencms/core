@@ -15,8 +15,11 @@ class Group
     {
         $this->group = [
             'name' => 'New Group',
+            'key' => '',
             'size' => 12,
-            'fields' => collect([])
+            'repeater' => false,
+            'fields' => collect([]),
+            'groups' => collect([])
         ];
     }
 
@@ -69,6 +72,33 @@ class Group
     }
 
     /**
+     * Defined a sub-group as a repeater group and assigns a key for saving
+     *
+     * @param string $key
+     * @return Silvanite\Agencms\Group
+     */
+    public function repeater(string $key)
+    {
+        $this->key($key);
+        $this->group['repeater'] = true;
+
+        return $this;
+    }
+
+    /**
+     * Assign a specific key to a sub-group
+     *
+     * @param [type] $key
+     * @return void
+     */
+    public function key($key)
+    {
+        $this->group['key'] = $key;
+
+        return $this;
+    }
+
+    /**
      * Add fields to the current group. Accepts a comma separated list of Fields
      *
      * @param Field ...$fields
@@ -78,6 +108,22 @@ class Group
     {
         collect($fields)->map(function ($field) {
             $this->group['fields']->put($field->key(), $field->get());
+        });
+
+        return $this;
+    }
+
+    /**
+     * Sub-groups are used to define collections of repeatable fields which can be
+     * inserted, deleted and re-ordered by the user.
+     *
+     * @param Silvanite\Agencms\Group ...$groups
+     * @return Silvanite\Agencms\Group
+     */
+    public function addGroup(Group ...$groups)
+    {
+        collect($groups)->map(function ($group) {
+            $this->group['groups'][] = $group->get();
         });
 
         return $this;

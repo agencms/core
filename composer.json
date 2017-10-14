@@ -9,5 +9,15 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Silvanite\\Agencms\\AgencmsServiceProvider"
+            ],
+            "aliases": {
+                "AgencmsConfig": "Silvanite\\Agencms\\Facades\\ConfigFacade"
+            }
+        }
+    }
 }

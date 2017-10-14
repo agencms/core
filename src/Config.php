@@ -4,9 +4,9 @@ namespace Silvanite\Agencms;
 
 class Config
 {
-    public const TYPE_COLLECTION = 'collection';
-    public const TYPE_SINGLE = 'single';
-    public const TYPE_HIDDEN = 'hidden';
+    const TYPE_COLLECTION = 'collection';
+    const TYPE_SINGLE = 'single';
+    const TYPE_HIDDEN = 'hidden';
 
     protected $routes;
     protected $plugins;

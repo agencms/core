@@ -3,7 +3,7 @@
 namespace Silvanite\Agencms\Controllers;
 
 use Illuminate\Http\Request;
-use Agencms;
+use Silvanite\Agencms\Facades\ConfigFacade as Agencms;
 use Silvanite\Agencms\Handlers\AgencmsHandler;
 
 class ConfigController extends Controller

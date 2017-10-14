@@ -6,7 +6,7 @@ class Route
 {
     private $route;
 
-    protected const ROUTE_METHODS = [
+    const ROUTE_METHODS = [
         'GET', 'POST', 'PUT', 'DELETE'
     ];
 
@@ -34,6 +34,7 @@ class Route
         $instance->route['type'] = $type;
         $instance->route['endpoints'] = self::makeEndpoints($endpoints);
         $instance->route['groups'] = collect([]);
+        $instance->route['icon'] = 'filter_list';
 
         return $instance;
     }
@@ -75,7 +76,7 @@ class Route
     public function addGroup(...$groups)
     {
         collect($groups)->map(function ($group) {
-            $this->route['groups'][] =  $group->get();
+            $this->route['groups'][] = $group->get();
         });
 
         return $this;
@@ -96,6 +97,19 @@ class Route
     public function slug()
     {
         return $this->route['slug'];
+    }
+
+    /**
+     * Set the CMS Icon for this Route
+     *
+     * @param string $key
+     * @return Silvanite\Agencms\Route
+     */
+    public function icon(string $key)
+    {
+        $this->route['icon'] = $key;
+        
+        return $this;
     }
 
     /**
