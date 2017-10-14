@@ -13,7 +13,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Silvanite\\Agencms\\AgencmsServiceProvider"
+                "Silvanite\\Agencms\\Providers\\AgencmsServiceProvider"
             ],
             "aliases": {
                 "AgencmsConfig": "Silvanite\\Agencms\\Facades\\ConfigFacade"
