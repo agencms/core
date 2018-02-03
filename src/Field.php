@@ -11,6 +11,7 @@ class Field
 
     const MODE_CHECKBOX = 'checkbox';
     const MODE_SELECT = 'select';
+    const MODE_TAGS = 'tags';
     const MODE_SLUG = 'slug';
 
     /**
@@ -350,10 +351,7 @@ class Field
     public function addOptions(array $choices)
     {
         collect($choices)->map(function ($choice) {
-            $this->field['choices']->push([
-                'value' => strtolower($choice),
-                'text' => $choice
-            ]);
+            $this->field['choices']->push($choice);
         });
 
         return $this;
@@ -403,6 +401,16 @@ class Field
     public function dropdown()
     {
         return $this->mode(self::MODE_SELECT);
+    }
+
+    /**
+     * Helper method to set the select mode to tags
+     *
+     * @return Silvanite\Agencms\Field
+     */
+    public function tags()
+    {
+        return $this->mode(self::MODE_TAGS);
     }
 
     /**
