@@ -7,7 +7,7 @@ class Route
     private $route;
 
     const ROUTE_METHODS = [
-        'GET', 'POST', 'PUT', 'DELETE'
+        'GET', 'POST', 'PUT', 'DELETE',
     ];
 
     protected function __construct()
@@ -17,7 +17,7 @@ class Route
 
     /**
      * Initialise a new route. This must be called before any other method on the class
-     * 
+     *
      * @param string $slug
      * @param string $name
      * @param string|Array $endpoints
@@ -47,8 +47,9 @@ class Route
      */
     private static function makeEndpoints($endpoints)
     {
-        if (is_string($endpoints)) 
+        if (is_string($endpoints)) {
             return self::makeEndpointsFromString($endpoints, self::ROUTE_METHODS);
+        }
 
         return $endpoints;
     }
