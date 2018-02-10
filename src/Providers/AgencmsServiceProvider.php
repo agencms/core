@@ -10,9 +10,11 @@ use Illuminate\Support\ServiceProvider;
 use Silvanite\AgencmsBlog\BlogCategory;
 use Illuminate\Database\Eloquent\Model;
 use Silvanite\Agencms\Listeners\EloquentListener;
+use Silvanite\Brandenburg\Traits\ValidatesPermissions;
 
 class AgencmsServiceProvider extends ServiceProvider
 {
+    use ValidatesPermissions;
 
     /**
      * Bootstrap the application services.
@@ -76,21 +78,5 @@ class AgencmsServiceProvider extends ServiceProvider
                 return $user->hasRoleWithPermission($permission);
             });
         });
-    }
-
-    /**
-     * If nobody has this permission, grant access to everyone
-     * This avoids you from being locked out of your application
-     *
-     * @param string $permission
-     * @return boolean
-     */
-    private function nobodyHasAccess($permission)
-    {
-        if (!$requestedPermission = Permission::find($permission)) {
-            return true;
-        }
-
-        return !$requestedPermission->hasUsers();
     }
 }
