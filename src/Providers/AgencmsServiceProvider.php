@@ -124,5 +124,9 @@ class AgencmsServiceProvider extends ServiceProvider
         Blade::directive('field', function ($expression = []) {
             return "<?php echo \RenderEngine::renderField({$expression}); ?>";
         });
+
+        Blade::directive('render', function ($expression = []) {
+            return "<?php echo \RenderEngine::render({$expression}); ?>";
+        });
     }
 }

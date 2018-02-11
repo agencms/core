@@ -38,4 +38,15 @@ class RenderEngine
             'agencms::fields.default'
         ])->with(['field' => $field])->render();
     }
+
+    public function render($value, $fieldKey = 'default', $fieldType = 'default', $params = [])
+    {
+        $field = array_merge([
+            'type' => $fieldType,
+            'key' => $fieldKey,
+            'content' => $value,
+        ], $params);
+
+        return $this->renderField($field);
+    }
 }
