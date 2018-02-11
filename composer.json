@@ -23,7 +23,8 @@
                 "Silvanite\\Agencms\\Providers\\AgencmsServiceProvider"
             ],
             "aliases": {
-                "AgencmsConfig": "Silvanite\\Agencms\\Facades\\ConfigFacade"
+                "AgencmsConfig": "Silvanite\\Agencms\\Facades\\ConfigFacade",
+                "RenderEngine": "Silvanite\\Agencms\\Facades\\RenderEngine"
             }
         }
     },

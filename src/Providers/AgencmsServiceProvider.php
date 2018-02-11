@@ -6,9 +6,11 @@ use Silvanite\Agencms\Config;
 use Silvanite\Brandenburg\Policy;
 use Illuminate\Support\Facades\Gate;
 use Silvanite\Brandenburg\Permission;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Silvanite\AgencmsBlog\BlogCategory;
 use Illuminate\Database\Eloquent\Model;
+use Silvanite\AgencmsBlog\BlogCategory;
+use Silvanite\Agencms\Support\RenderEngine;
 use Silvanite\Agencms\Listeners\EloquentListener;
 use Silvanite\Brandenburg\Traits\ValidatesPermissions;
 
@@ -24,6 +26,7 @@ class AgencmsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerApiRoutes();
+        $this->bootViews();
     }
 
     /**
@@ -35,6 +38,21 @@ class AgencmsServiceProvider extends ServiceProvider
     {
         $this->registerPermissions();
         $this->registerConfig();
+        $this->registerRenderEngine();
+        $this->registerBladeExtensions();
+    }
+
+    /**
+     * Load Agencms views used for rendering content
+     *
+     * @return void
+     */
+    private function bootViews()
+    {
+        $this->loadViewsFrom(__DIR__.'/../views', 'agencms');
+        $this->publishes([
+            __DIR__.'/../views' => resource_path('views/vendor/agencms'),
+        ], 'views');
     }
 
     /**
@@ -47,6 +65,18 @@ class AgencmsServiceProvider extends ServiceProvider
     {
         $this->app->bind($container, function () {
             return new Config;
+        });
+    }
+
+    /**
+     * Register our Render Engine facade used to renderin CMS content in blade
+     *
+     * @return void
+     */
+    private function registerRenderEngine()
+    {
+        $this->app->bind('agencms-render-engine', function () {
+            return new RenderEngine;
         });
     }
 
@@ -77,6 +107,22 @@ class AgencmsServiceProvider extends ServiceProvider
 
                 return $user->hasRoleWithPermission($permission);
             });
+        });
+    }
+
+    /**
+     * Register our blade extensions to easily render CMS content
+     *
+     * @return void
+     */
+    private function registerBladeExtensions()
+    {
+        Blade::directive('repeater', function ($expression = []) {
+            return "<?php echo \RenderEngine::renderRepeater({$expression}); ?>";
+        });
+
+        Blade::directive('field', function ($expression = []) {
+            return "<?php echo \RenderEngine::renderField({$expression}); ?>";
         });
     }
 }
