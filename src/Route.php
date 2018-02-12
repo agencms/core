@@ -40,6 +40,19 @@ class Route
     }
 
     /**
+     * Initialise a new single record style route.
+     *
+     * @param string $slug
+     * @param string $name
+     * @param string|Array $endpoints
+     * @return Silvanite\Agencms\Route
+     */
+    public static function initSingle($slug, $name, $endpoints = [])
+    {
+        return self::init($slug, $name, $endpoints, Config::TYPE_SINGLE);
+    }
+
+    /**
      * Creates a valid array of required endpoints
      *
      * @param string $endpoints
