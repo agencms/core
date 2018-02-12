@@ -4,7 +4,8 @@ namespace Silvanite\Agencms\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Agencms extends Facade {
+class Agencms extends Facade
+{
 
     /**
      * Get the binding in the IoC container
