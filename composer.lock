@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4bc13ed0677de2ec07b6ef008b99c877",
+    "content-hash": "b086ffc024eb5a46a9b41b1fcc184f40",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -118,6 +118,58 @@
                 "laravel"
             ],
             "time": "2018-01-04T06:59:27+00:00"
+        },
+        {
+            "name": "cloudinary/cloudinary_php",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cloudinary/cloudinary_php.git",
+                "reference": "641b0901ca616c540b773abb802987a502aa8b89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/641b0901ca616c540b773abb802987a502aa8b89",
+                "reference": "641b0901ca616c540b773abb802987a502aa8b89",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src"
+                ],
+                "files": [
+                    "src/Helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cloudinary",
+                    "homepage": "https://github.com/cloudinary/cloudinary_php/graphs/contributors"
+                }
+            ],
+            "description": "Cloudinary PHP SDK",
+            "homepage": "https://github.com/cloudinary/cloudinary_php",
+            "keywords": [
+                "cdn",
+                "cloud",
+                "cloudinary",
+                "image management",
+                "sdk"
+            ],
+            "time": "2017-05-03T14:29:33+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1966,6 +2018,54 @@
             "time": "2018-01-29T09:06:29+00:00"
         },
         {
+            "name": "thesold/laravel-media-manager",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thesold/laravel-media-manager.git",
+                "reference": "f678a5993089194c23bb5dcb3ad18c9f314e7d54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thesold/laravel-media-manager/zipball/f678a5993089194c23bb5dcb3ad18c9f314e7d54",
+                "reference": "f678a5993089194c23bb5dcb3ad18c9f314e7d54",
+                "shasum": ""
+            },
+            "require": {
+                "barryvdh/laravel-cors": "^0.11.0",
+                "cloudinary/cloudinary_php": "^1.8",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^3.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Thesold\\LaravelMediaManager\\MediaServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Thesold\\LaravelMediaManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Mark",
+                    "email": "marco@silvanite.com"
+                }
+            ],
+            "description": "Laravel Media Manager for use with Vue Media Manager",
+            "time": "2018-02-10T13:24:04+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.1",
             "source": {
@@ -2119,7 +2219,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "silvanite/agencms-auth": 20
+        "silvanite/agencms-auth": 20,
+        "thesold/laravel-media-manager": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
