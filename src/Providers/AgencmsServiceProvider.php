@@ -61,9 +61,9 @@ class AgencmsServiceProvider extends ServiceProvider
      * @param string $IoC name of the container
      * @return Silvanite\Agencms\Config
      */
-    private function registerConfig($container = "AgencmsConfig")
+    private function registerConfig()
     {
-        $this->app->bind($container, function () {
+        $this->app->bind("agencms-config", function () {
             return new Config;
         });
     }

@@ -14,6 +14,6 @@ class Agencms extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'AgencmsConfig';
+        return 'agencms-config';
     }
 }
