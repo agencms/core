@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "db7ebab7454804d7debdaba8fa109ea1",
+    "content-hash": "9a459818979d2609b68c5304d977ffa9",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1012,6 +1012,97 @@
                 "uuid"
             ],
             "time": "2018-01-20T00:28:24+00:00"
+        },
+        {
+            "name": "silvanite/agencms-auth",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Silvanite/agencms-auth.git",
+                "reference": "12d83a5547239b83c538c8274b8714457076b4c8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Silvanite/agencms-auth/zipball/12d83a5547239b83c538c8274b8714457076b4c8",
+                "reference": "12d83a5547239b83c538c8274b8714457076b4c8",
+                "shasum": ""
+            },
+            "require": {
+                "silvanite/brandenburg": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Silvanite\\AgencmsAuth\\Providers\\AgencmsAuthServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Silvanite\\AgencmsAuth\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Marco Mark",
+                    "email": "marco@silvanite.com"
+                }
+            ],
+            "description": "Agencms Authentication Package",
+            "time": "2018-02-10T13:43:33+00:00"
+        },
+        {
+            "name": "silvanite/brandenburg",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Silvanite/brandenburg.git",
+                "reference": "929e910062e5ccfdee49e64775f05da354d9e889"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Silvanite/brandenburg/zipball/929e910062e5ccfdee49e64775f05da354d9e889",
+                "reference": "929e910062e5ccfdee49e64775f05da354d9e889",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.5",
+                "phpunit/phpunit": "^6.4",
+                "squizlabs/php_codesniffer": "^3.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Silvanite\\Brandenburg\\Providers\\BrandenburgServiceProvider"
+                    ],
+                    "aliases": {
+                        "BrandenburgPolicy": "Silvanite\\Brandenburg\\Facades\\PolicyFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Silvanite\\Brandenburg\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Mark (m2de)",
+                    "email": "marco@silvanite.com"
+                }
+            ],
+            "description": "Laravel Authentication Package",
+            "time": "2017-11-27T20:40:31+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2027,7 +2118,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "silvanite/agencms-auth": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
