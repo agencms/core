@@ -16,7 +16,11 @@ class RenderEngine
             $repeaterType = str_slug($repeater['name']);
 
             return view()->first(["agencms::repeaters.type.{$repeaterType}", 'agencms::repeaters.default'])
-                ->with(['fields' => $repeater['fields']])->render();
+                ->with([
+                    'fields' => $repeater['fields'],
+                    'groups' => $repeater['groups'],
+                    'content' => $repeater['content'],
+                ])->render();
         })->implode('');
     }
 
