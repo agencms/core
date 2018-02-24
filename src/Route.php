@@ -40,6 +40,23 @@ class Route
     }
 
     /**
+     * Creates a new Route instance for merging into an existing route collection
+     *
+     * @param string $slug
+     * @return Silvanite\Agencms\Route
+     */
+    public static function load(string $slug)
+    {
+        $instance = new static();
+
+        $instance->route = [];
+        $instance->route['slug'] = $slug;
+        $instance->route['groups'] = collect([]);
+
+        return $instance;
+    }
+
+    /**
      * Initialise a new single record style route.
      *
      * @param string $slug

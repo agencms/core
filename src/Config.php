@@ -61,6 +61,22 @@ class Config
     }
 
     /**
+     * Append additional groups to an existing Route
+     *
+     * @param Silvanite\Agencms\Route $route
+     * @return Illuminate\Support\Collection
+     */
+    public function appendRoute(Route $route)
+    {
+        if (!$originalRoute = optional($this->routes)[$route->slug()]) {
+            return "Route {$route->slug()} not found";
+        }
+
+        return $this->routes[$route->slug()]['groups'] =
+            $originalRoute['groups']->merge($route->get()['groups']);
+    }
+
+    /**
      * Return all registered routes
      *
      * @return Illuminate\Support\Collection
