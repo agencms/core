@@ -29,8 +29,17 @@ class Route
         $instance = new static();
 
         $instance->route = [];
+
+        if (is_array($name)) {
+            $section = key($name);
+            $name = $name[$section];
+        } else {
+            $section = $name;
+        }
+
         $instance->route['slug'] = $slug;
         $instance->route['name'] = $name;
+        $instance->route['section'] = $section;
         $instance->route['type'] = $type;
         $instance->route['endpoints'] = self::makeEndpoints($endpoints);
         $instance->route['groups'] = collect([]);
