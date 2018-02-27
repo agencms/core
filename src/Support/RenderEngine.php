@@ -13,9 +13,13 @@ class RenderEngine
     public function renderRepeater($repeaters)
     {
         return collect($repeaters)->map(function ($repeater) {
+            $repeaterKey = $repeater['key'];
             $repeaterType = str_slug($repeater['name']);
 
-            return view()->first(["agencms::repeaters.type.{$repeaterType}", 'agencms::repeaters.default'])
+            return view()->first([
+                "agencms::repeaters.{$repeaterKey}",
+                "agencms::repeaters.type.{$repeaterType}",
+                'agencms::repeaters.default'])
                 ->with([
                     'fields' => $repeater['fields'],
                     'groups' => $repeater['groups'],
