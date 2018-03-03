@@ -6,11 +6,13 @@ use Silvanite\Agencms\Config;
 use Barryvdh\Cors\HandleCors;
 use Silvanite\Brandenburg\Policy;
 use Illuminate\Support\Facades\Gate;
-use Silvanite\Brandenburg\Permission;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
+use Silvanite\Brandenburg\Permission;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
+use Silvanite\Agencms\Commands\Install;
 use Silvanite\AgencmsBlog\BlogCategory;
+use Illuminate\Support\ServiceProvider;
 use Silvanite\Agencms\Support\RenderEngine;
 use Silvanite\Agencms\Listeners\EloquentListener;
 use Silvanite\Brandenburg\Traits\ValidatesPermissions;
@@ -28,6 +30,7 @@ class AgencmsServiceProvider extends ServiceProvider
     {
         $this->registerApiRoutes();
         $this->bootViews();
+        $this->bootCommands();
         $this->enableCors();
     }
 
@@ -60,6 +63,15 @@ class AgencmsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../views' => resource_path('views/vendor/agencms'),
         ], 'views');
+    }
+
+    private function bootCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Install::class,
+            ]);
+        }
     }
 
     /**
