@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Handlers;
+
+use Silvanite\Agencms\Route;
+use Silvanite\Agencms\Field;
+use Silvanite\Agencms\Group;
+use Silvanite\Agencms\Option;
+use Silvanite\Agencms\Relationship;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Middleware\AgencmsConfig;
+use Silvanite\Agencms\Facades\Agencms;
+use Illuminate\Support\Facades\Route as Router;
+
+class AgencmsHandler
+{
+    /**
+     * Register router middleware as plugin for Agencms.
+     *
+     * @return void
+     */
+    private static function register()
+    {
+        Router::aliasMiddleware('agencms.plugin.name', AgencmsConfig::class);
+        Agencms::registerPlugin('agencms.plugin.name');
+    }
+
+    /**
+     * Register all routes and models for the Admin GUI (AUI)
+     *
+     * @return void
+     */
+    public static function registerAdmin()
+    {
+        // if (!Gate::allows('admin_access')) {
+        //     return;
+        // }
+
+        // self::registerAgencms();
+    }
+
+    /**
+     * Register the Agencms endpoints for this Application
+     *
+     * @return void
+     */
+    private static function registerAgencms()
+    {
+        // if (!Gate::allows('my_permission')) {
+        //     return;
+        // }
+
+        // Agencms::registerRoute(
+        //     Route::init('my_route', ['Menu Section' => 'Menu Item'], '/end/point')
+        //         ->icon('person')
+        //         ->addGroup(
+        //             Group::large('My Section')->addField(
+        //                 Field::string('my-key', 'My Label')->required()->list()
+        //             )
+        //         )
+        // );
+    }
+}
