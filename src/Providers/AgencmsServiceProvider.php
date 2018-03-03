@@ -3,6 +3,7 @@
 namespace Silvanite\Agencms\Providers;
 
 use Silvanite\Agencms\Config;
+use Barryvdh\Cors\HandleCors;
 use Silvanite\Brandenburg\Policy;
 use Illuminate\Support\Facades\Gate;
 use Silvanite\Brandenburg\Permission;
@@ -27,6 +28,7 @@ class AgencmsServiceProvider extends ServiceProvider
     {
         $this->registerApiRoutes();
         $this->bootViews();
+        $this->enableCors();
     }
 
     /**
@@ -40,6 +42,11 @@ class AgencmsServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerRenderEngine();
         $this->registerBladeExtensions();
+    }
+
+    private function enableCors()
+    {
+        Route::aliasMiddleware('cors', HandleCors::class);
     }
 
     /**
