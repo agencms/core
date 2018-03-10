@@ -24,7 +24,7 @@ class Route
      * @param string $type
      * @return Silvanite\Agencms\Route
      */
-    public static function init($slug, $name, $endpoints = [], $type = Config::TYPE_COLLECTION)
+    public static function init($slug, $name, $endpoints = null, $type = Config::TYPE_COLLECTION)
     {
         $instance = new static();
 
@@ -41,7 +41,7 @@ class Route
         $instance->route['name'] = $name;
         $instance->route['section'] = $section;
         $instance->route['type'] = $type;
-        $instance->route['endpoints'] = self::makeEndpoints($endpoints);
+        $instance->route['endpoints'] = $endpoints ? : self::makeEndpoints($endpoints);
         $instance->route['groups'] = collect([]);
         $instance->route['icon'] = 'filter_list';
 
