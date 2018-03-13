@@ -1,5 +1,5 @@
 {
-    "name": "silvanite/agencms",
+    "name": "agencms/core",
     "description": "Laravel CMS Library for Agencms",
     "type": "library",
     "authors": [
@@ -11,22 +11,22 @@
     "require": {
         "barryvdh/laravel-cors": "^0.11.0",
         "laravel/framework": "^5.4|^5.5|^5.6",
-        "silvanite/agencms-auth": "dev-master",
+        "agencms/auth": "dev-master",
         "thesold/laravel-media-manager": "dev-master"
     },
     "autoload": {
         "psr-4": {
-            "Silvanite\\Agencms\\": "src/"
+            "Agencms\\Core\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Silvanite\\Agencms\\Providers\\AgencmsServiceProvider"
+                "Agencms\\CoreProviders\\AgencmsServiceProvider"
             ],
             "aliases": {
-                "Agencms": "Silvanite\\Agencms\\Facades\\Agencms",
-                "RenderEngine": "Silvanite\\Agencms\\Facades\\RenderEngine"
+                "Agencms": "Agencms\\CoreFacades\\Agencms",
+                "RenderEngine": "Agencms\\CoreFacades\\RenderEngine"
             }
         }
     },
