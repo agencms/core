@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e37e6a92116cbb6b7e2422503e8dc30b",
+    "content-hash": "9ef4c30e966c0b37bae61b065dd3e856",
     "packages": [
         {
             "name": "agencms/auth",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agencms/auth.git",
-                "reference": "d44eeca3b2878f3a2fd9fc2835497e13eda9fc34"
+                "reference": "1fa2c89d907839e9904cbce31e726be7310e5c9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencms/auth/zipball/d44eeca3b2878f3a2fd9fc2835497e13eda9fc34",
-                "reference": "d44eeca3b2878f3a2fd9fc2835497e13eda9fc34",
+                "url": "https://api.github.com/repos/agencms/auth/zipball/1fa2c89d907839e9904cbce31e726be7310e5c9c",
+                "reference": "1fa2c89d907839e9904cbce31e726be7310e5c9c",
                 "shasum": ""
             },
             "require": {
@@ -42,6 +42,9 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
             "authors": [
                 {
                     "name": "Marco Mark",
@@ -49,7 +52,7 @@
                 }
             ],
             "description": "Agencms Authentication Package",
-            "time": "2018-03-13T20:54:35+00:00"
+            "time": "2018-03-13T21:10:13+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -2028,21 +2031,21 @@
         },
         {
             "name": "thesold/laravel-media-manager",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thesold/laravel-media-manager.git",
-                "reference": "f678a5993089194c23bb5dcb3ad18c9f314e7d54"
+                "reference": "4b8e2f0dd4aff900691856d43e0989a03933974a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thesold/laravel-media-manager/zipball/f678a5993089194c23bb5dcb3ad18c9f314e7d54",
-                "reference": "f678a5993089194c23bb5dcb3ad18c9f314e7d54",
+                "url": "https://api.github.com/repos/thesold/laravel-media-manager/zipball/4b8e2f0dd4aff900691856d43e0989a03933974a",
+                "reference": "4b8e2f0dd4aff900691856d43e0989a03933974a",
                 "shasum": ""
             },
             "require": {
                 "barryvdh/laravel-cors": "^0.11.0",
-                "cloudinary/cloudinary_php": "^1.8",
+                "cloudinary/cloudinary_php": "^1.9",
                 "php": ">=7.0.0"
             },
             "require-dev": {
@@ -2063,7 +2066,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache-2.0"
+                "GPL-3.0"
             ],
             "authors": [
                 {
@@ -2072,7 +2075,7 @@
                 }
             ],
             "description": "Laravel Media Manager for use with Vue Media Manager",
-            "time": "2018-02-10T13:24:04+00:00"
+            "time": "2018-03-13T21:52:58+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -2227,10 +2230,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "agencms/auth": 20,
-        "thesold/laravel-media-manager": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
