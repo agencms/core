@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bb50712b338a437c4ae9827e09ebf16",
+    "content-hash": "e37e6a92116cbb6b7e2422503e8dc30b",
     "packages": [
         {
             "name": "agencms/auth",
