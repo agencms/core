@@ -1,8 +1,8 @@
 <?php
 
-namespace Silvanite\Agencms;
+namespace Agencms\Core;
 
-use Silvanite\Agencms\Field;
+use Agencms\Core\Field;
 
 class Group
 {
@@ -28,7 +28,7 @@ class Group
      *
      * @param string $name
      * @param int $size
-     * @return Silvanite\Agencms\Group
+     * @return Agencms\Core\Group
      */
     public static function size(string $name, int $size = 12)
     {
@@ -44,7 +44,7 @@ class Group
      * Helper methods for size
      *
      * @param string $name
-     * @return Silvanite\Agencms\Group
+     * @return Agencms\Core\Group
      */
     public static function tiny(string $name)
     {
@@ -75,7 +75,7 @@ class Group
      * Defined a sub-group as a repeater group and assigns a key for saving
      *
      * @param string $key
-     * @return Silvanite\Agencms\Group
+     * @return Agencms\Core\Group
      */
     public function repeater(string $key)
     {
@@ -102,7 +102,7 @@ class Group
      * Add fields to the current group. Accepts a comma separated list of Fields
      *
      * @param Field ...$fields
-     * @return Silvanite\Agencms\Group
+     * @return Agencms\Core\Group
      */
     public function addField(Field ...$fields)
     {
@@ -117,8 +117,8 @@ class Group
      * Sub-groups are used to define collections of repeatable fields which can be
      * inserted, deleted and re-ordered by the user.
      *
-     * @param Silvanite\Agencms\Group ...$groups
-     * @return Silvanite\Agencms\Group
+     * @param Agencms\Core\Group ...$groups
+     * @return Agencms\Core\Group
      */
     public function addGroup(Group ...$groups)
     {

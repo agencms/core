@@ -1,8 +1,8 @@
 <?php
 
-namespace Silvanite\Agencms\Providers;
+namespace Agencms\Core\Providers;
 
-use Silvanite\Agencms\Config;
+use Agencms\Core\Config;
 use Barryvdh\Cors\HandleCors;
 use Silvanite\Brandenburg\Policy;
 use Illuminate\Support\Facades\Gate;
@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Blade;
 use Silvanite\Brandenburg\Permission;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Database\Eloquent\Model;
-use Silvanite\Agencms\Commands\Install;
-use Silvanite\AgencmsBlog\BlogCategory;
+use Agencms\Core\Commands\Install;
+use Agencms\Blog\BlogCategory;
 use Illuminate\Support\ServiceProvider;
-use Silvanite\Agencms\Support\RenderEngine;
-use Silvanite\Agencms\Listeners\EloquentListener;
+use Agencms\Core\Support\RenderEngine;
+use Agencms\Core\Listeners\EloquentListener;
 use Silvanite\Brandenburg\Traits\ValidatesPermissions;
 
 class AgencmsServiceProvider extends ServiceProvider
@@ -78,7 +78,7 @@ class AgencmsServiceProvider extends ServiceProvider
      * Register the Config module
      *
      * @param string $IoC name of the container
-     * @return Silvanite\Agencms\Config
+     * @return Agencms\Core\Config
      */
     private function registerConfig()
     {

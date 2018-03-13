@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\Agencms;
+namespace Agencms\Core;
 
 class Option
 {
@@ -22,7 +22,7 @@ class Option
      *
      * @param string $value
      * @param string $label
-     * @return Silvanite\Agencms\Option
+     * @return Agencms\Core\Option
      */
     public static function init(string $value = null, string $label = null)
     {

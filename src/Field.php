@@ -1,9 +1,9 @@
 <?php
 
-namespace Silvanite\Agencms;
+namespace Agencms\Core;
 
-use Silvanite\Agencms\Option;
-use Silvanite\Agencms\Relationship;
+use Agencms\Core\Option;
+use Agencms\Core\Relationship;
 
 class Field
 {
@@ -45,7 +45,7 @@ class Field
      * @param string $type
      * @param string $key
      * @param string $name
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     protected static function init(string $type = 'string', string $key = null, string $name = null)
     {
@@ -65,7 +65,7 @@ class Field
      *
      * @param string $key
      * @param string $name
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public static function string(string $key = null, string $name = null)
     {
@@ -111,7 +111,7 @@ class Field
      * Set the number of rows allowed (e.g. text fields)
      *
      * @param int $rows
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function rows(int $rows)
     {
@@ -123,7 +123,7 @@ class Field
     /**
      * Helper method to set a text area to be single-line.
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function singleline()
     {
@@ -134,7 +134,7 @@ class Field
      * Helper method to set a text area to be multi-line.
      *
      * @param int $rows
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function multiline(int $rows = 5)
     {
@@ -145,7 +145,7 @@ class Field
      * Allow multiple image uploads on an image field
      *
      * @param int $number
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function multiple(int $number = 50)
     {
@@ -157,7 +157,7 @@ class Field
     /**
      * Only allow a single image to be uploaded to an image field
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function single()
     {
@@ -168,7 +168,7 @@ class Field
      * Limit input to a maximum of X chars
      *
      * @param int $number
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function maxLength(int $number = 50)
     {
@@ -181,7 +181,7 @@ class Field
      * Require the input to be at least X chars
      *
      * @param int $number
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function minLength(int $number = 0)
     {
@@ -194,7 +194,7 @@ class Field
      * Determine if a value is required for this field. This will trigger client
      * side validation.
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function required()
     {
@@ -207,7 +207,7 @@ class Field
      * Determine if a value is optional for this field. This will trigger client
      * side validation
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function optional()
     {
@@ -220,7 +220,7 @@ class Field
      * Determine if a field should be displayed in the list view
      *
      * @param int $position
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function list(int $position = 50)
     {
@@ -233,7 +233,7 @@ class Field
      * Allow/do not allow editing of this field in the admin UI
      *
      * @param boolean $value
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function readonly(bool $value = true)
     {
@@ -247,7 +247,7 @@ class Field
      * supplied, otherwise returns a string of the key.
      *
      * @param string $key
-     * @return Silvanite\Agencms\Field or string
+     * @return Agencms\Core\Field or string
      */
     public function key(string $key = null)
     {
@@ -264,7 +264,7 @@ class Field
      * Sets the display name of a field
      *
      * @param string $name
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function name(string $name = null)
     {
@@ -287,7 +287,7 @@ class Field
      * Defines the display width of the item within the admin UI
      *
      * @param integer $size
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function size($size = 12)
     {
@@ -299,7 +299,7 @@ class Field
     /**
      * Helper methods to set the size of a field within the adminUI
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function tiny()
     {
@@ -330,7 +330,7 @@ class Field
      * Set the available choices for a select field as an array of key value pairs
      *
      * @param Option $choices
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function addOption(Option ...$choices)
     {
@@ -346,7 +346,7 @@ class Field
      * taken directly from a supplied array
      *
      * @param array $choices
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function addOptions(array $choices)
     {
@@ -361,7 +361,7 @@ class Field
      * Define the target model for a relationship field
      *
      * @param Relationship $model
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function model(Relationship $model)
     {
@@ -374,7 +374,7 @@ class Field
      * Set the mode for select fields
      *
      * @param string $mode
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function mode(string $mode = self::MODE_SELECT)
     {
@@ -386,7 +386,7 @@ class Field
     /**
      * Helper method to set the select mode to checkboxes
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function checkbox()
     {
@@ -396,7 +396,7 @@ class Field
     /**
      * Helper method to set the select mode to dropdown
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function dropdown()
     {
@@ -406,7 +406,7 @@ class Field
     /**
      * Helper method to set the select mode to tags
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function tags()
     {
@@ -416,7 +416,7 @@ class Field
     /**
      * Helper method to set text input mode to slug
      *
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function slug()
     {
@@ -427,7 +427,7 @@ class Field
      * Link the output of a field to the input of another
      *
      * @param string $linkedField
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function link(string $linkedField)
     {
@@ -443,7 +443,7 @@ class Field
      * @param int $width
      * @param int $height
      * @param bool $resize
-     * @return Silvanite\Agencms\Field
+     * @return Agencms\Core\Field
      */
     public function ratio(int $width, int $height, bool $resize = false)
     {

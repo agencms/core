@@ -2,15 +2,15 @@
 
 namespace App\Handlers;
 
-use Silvanite\Agencms\Route;
-use Silvanite\Agencms\Field;
-use Silvanite\Agencms\Group;
-use Silvanite\Agencms\Option;
-use Silvanite\Agencms\Relationship;
+use Agencms\Core\Route;
+use Agencms\Core\Field;
+use Agencms\Core\Group;
+use Agencms\Core\Option;
+use Agencms\Core\Relationship;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Middleware\AgencmsConfig;
-use Silvanite\Agencms\Facades\Agencms;
+use Agencms\Core\Facades\Agencms;
 use Illuminate\Support\Facades\Route as Router;
 
 class AgencmsHandler

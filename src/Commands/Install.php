@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\Agencms\Commands;
+namespace Agencms\Core\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;

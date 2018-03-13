@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\Agencms\Support;
+namespace Agencms\Core\Support;
 
 class RenderEngine
 {

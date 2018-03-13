@@ -1,6 +1,6 @@
 <?php 
 
-namespace Silvanite\Agencms;
+namespace Agencms\Core;
 
 class Config
 {
@@ -52,7 +52,7 @@ class Config
     /**
      * Register a new route for the CMS Rest endpoint
      *
-     * @param Silvanite\Agencms\Route $route
+     * @param Agencms\Core\Route $route
      * @return Illuminate\Support\Collection
      */
     public function registerRoute(Route $route)
@@ -63,7 +63,7 @@ class Config
     /**
      * Append additional groups to an existing Route
      *
-     * @param Silvanite\Agencms\Route $route
+     * @param Agencms\Core\Route $route
      * @return Illuminate\Support\Collection
      */
     public function appendRoute(Route $route)

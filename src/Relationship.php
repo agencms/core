@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\Agencms;
+namespace Agencms\Core;
 
 class Relationship
 {
@@ -21,7 +21,7 @@ class Relationship
      * This must be the first call (or a helper method).
      *
      * @param string $model
-     * @return Silvanite\Agencms\Relationship
+     * @return Agencms\Core\Relationship
      */
     public static function make($model)
     {

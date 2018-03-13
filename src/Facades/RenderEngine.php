@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\Agencms\Facades;
+namespace Agencms\Core\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

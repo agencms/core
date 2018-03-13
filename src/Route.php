@@ -1,6 +1,6 @@
 <?php
 
-namespace Silvanite\Agencms;
+namespace Agencms\Core;
 
 class Route
 {
@@ -22,7 +22,7 @@ class Route
      * @param string $name
      * @param string|Array $endpoints
      * @param string $type
-     * @return Silvanite\Agencms\Route
+     * @return Agencms\Core\Route
      */
     public static function init($slug, $name, $endpoints = null, $type = Config::TYPE_COLLECTION)
     {
@@ -52,7 +52,7 @@ class Route
      * Creates a new Route instance for merging into an existing route collection
      *
      * @param string $slug
-     * @return Silvanite\Agencms\Route
+     * @return Agencms\Core\Route
      */
     public static function load(string $slug)
     {
@@ -71,7 +71,7 @@ class Route
      * @param string $slug
      * @param string $name
      * @param string|Array $endpoints
-     * @return Silvanite\Agencms\Route
+     * @return Agencms\Core\Route
      */
     public static function initSingle($slug, $name, $endpoints = [])
     {
@@ -110,8 +110,8 @@ class Route
     /**
      * Registers a new API endpoint group
      *
-     * @param Silvanite\Agencms\Group ...$groups
-     * @return Silvanite\Agencms\Route
+     * @param Agencms\Core\Group ...$groups
+     * @return Agencms\Core\Route
      */
     public function addGroup(...$groups)
     {
@@ -143,7 +143,7 @@ class Route
      * Set the CMS Icon for this Route
      *
      * @param string $key
-     * @return Silvanite\Agencms\Route
+     * @return Agencms\Core\Route
      */
     public function icon(string $key)
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Silvanite\Agencms\Controllers;
+namespace Agencms\Core\Controllers;
 
 use Illuminate\Http\Request;
-use Silvanite\Agencms\Facades\Agencms;
-use Silvanite\Agencms\Handlers\AgencmsHandler;
+use Agencms\Core\Facades\Agencms;
+use Agencms\Core\Handlers\AgencmsHandler;
 
 class ConfigController extends Controller
 {
