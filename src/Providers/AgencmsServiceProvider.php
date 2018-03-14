@@ -4,16 +4,16 @@ namespace Agencms\Core\Providers;
 
 use Agencms\Core\Config;
 use Barryvdh\Cors\HandleCors;
+use Agencms\Blog\BlogCategory;
 use Silvanite\Brandenburg\Policy;
+use Agencms\Core\Commands\Install;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Blade;
 use Silvanite\Brandenburg\Permission;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Database\Eloquent\Model;
-use Agencms\Core\Commands\Install;
-use Agencms\Blog\BlogCategory;
-use Illuminate\Support\ServiceProvider;
 use Agencms\Core\Support\RenderEngine;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Model;
 use Agencms\Core\Listeners\EloquentListener;
 use Silvanite\Brandenburg\Traits\ValidatesPermissions;
 

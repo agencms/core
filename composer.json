@@ -23,7 +23,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Agencms\\CoreProviders\\AgencmsServiceProvider"
+                "Agencms\\Core\\Providers\\AgencmsServiceProvider"
             ],
             "aliases": {
                 "Agencms": "Agencms\\CoreFacades\\Agencms",
