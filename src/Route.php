@@ -41,7 +41,7 @@ class Route
         $instance->route['name'] = $name;
         $instance->route['section'] = $section;
         $instance->route['type'] = $type;
-        $instance->route['endpoints'] = $endpoints ? : self::makeEndpoints($endpoints);
+        $instance->route['endpoints'] = self::makeEndpoints($endpoints);
         $instance->route['groups'] = collect([]);
         $instance->route['icon'] = 'filter_list';
 
