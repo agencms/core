@@ -2,12 +2,21 @@
 
 namespace Agencms\Core;
 
+use Illuminate\Support\Facades\Gate;
+
 class Route
 {
     private $route;
 
     const ROUTE_METHODS = [
         'GET', 'POST', 'PUT', 'DELETE',
+    ];
+
+    const ROUTE_CRUD_PERMISSION = [
+        'GET' => 'read',
+        'POST' => 'create',
+        'PUT' => 'update',
+        'DELETE' => 'delete',
     ];
 
     protected function __construct()
@@ -76,6 +85,23 @@ class Route
     public static function initSingle($slug, $name, $endpoints = [])
     {
         return self::init($slug, $name, $endpoints, Config::TYPE_SINGLE);
+    }
+
+    /**
+     * Creates a valid array of required endpoints based on the user's permissions
+     *
+     * @param string $permission
+     * @param string $endpoint
+     * @return Array
+     */
+    public static function generateCrudEndpoints(string $permission, string $endpoint)
+    {
+        return collect(self::ROUTE_CRUD_PERMISSION)
+            ->map(function ($suffix, $method) use ($permission, $endpoint) {
+                if (Gate::allows("{$permission}_{$suffix}")) {
+                    return [$method => $endpoint];
+                }
+            })->collapse();
     }
 
     /**
