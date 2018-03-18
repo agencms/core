@@ -6,7 +6,6 @@ class Config
 {
     const TYPE_COLLECTION = 'collection';
     const TYPE_SINGLE = 'single';
-    const TYPE_HIDDEN = 'hidden';
 
     protected $routes;
     protected $plugins;
