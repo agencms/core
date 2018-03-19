@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "62f5dbb9187a027d424aa3f06f677b4f",
+    "content-hash": "d370c1413c0c7a1d7fbebb7a55d865f2",
     "packages": [
         {
             "name": "agencms/auth",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agencms/auth.git",
-                "reference": "1fa2c89d907839e9904cbce31e726be7310e5c9c"
+                "reference": "0846bf0a5ed8ee9a0e2db9ba9d962ebb2f958d8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencms/auth/zipball/1fa2c89d907839e9904cbce31e726be7310e5c9c",
-                "reference": "1fa2c89d907839e9904cbce31e726be7310e5c9c",
+                "url": "https://api.github.com/repos/agencms/auth/zipball/0846bf0a5ed8ee9a0e2db9ba9d962ebb2f958d8b",
+                "reference": "0846bf0a5ed8ee9a0e2db9ba9d962ebb2f958d8b",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 }
             ],
             "description": "Agencms Authentication Package",
-            "time": "2018-03-13T21:10:13+00:00"
+            "time": "2018-03-19T20:37:51+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -1119,16 +1119,16 @@
         },
         {
             "name": "silvanite/brandenburg",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Silvanite/brandenburg.git",
-                "reference": "929e910062e5ccfdee49e64775f05da354d9e889"
+                "reference": "bce1d18cbdbfe2f5cb2dc65ab4ab2c539687e432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Silvanite/brandenburg/zipball/929e910062e5ccfdee49e64775f05da354d9e889",
-                "reference": "929e910062e5ccfdee49e64775f05da354d9e889",
+                "url": "https://api.github.com/repos/Silvanite/brandenburg/zipball/bce1d18cbdbfe2f5cb2dc65ab4ab2c539687e432",
+                "reference": "bce1d18cbdbfe2f5cb2dc65ab4ab2c539687e432",
                 "shasum": ""
             },
             "require": {
@@ -1166,7 +1166,7 @@
                 }
             ],
             "description": "Laravel Authentication Package",
-            "time": "2017-11-27T20:40:31+00:00"
+            "time": "2018-03-19T15:27:36+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

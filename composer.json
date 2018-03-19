@@ -26,8 +26,8 @@
                 "Agencms\\Core\\Providers\\AgencmsServiceProvider"
             ],
             "aliases": {
-                "Agencms": "Agencms\\CoreFacades\\Agencms",
-                "RenderEngine": "Agencms\\CoreFacades\\RenderEngine"
+                "Agencms": "Agencms\\Core\\Facades\\Agencms",
+                "RenderEngine": "Agencms\\Core\\Facades\\RenderEngine"
             }
         }
     },
