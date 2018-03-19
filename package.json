@@ -1,6 +1,6 @@
 {
     "name": "agencms-core",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "scripts": {
         "precommit": "lint-staged"
     },
