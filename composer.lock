@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "agencms/auth",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/agencms/auth.git",
-                "reference": "0846bf0a5ed8ee9a0e2db9ba9d962ebb2f958d8b"
+                "reference": "0a7a11de118bcfa82dd547eac9ea4dbf83af2b58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/agencms/auth/zipball/0846bf0a5ed8ee9a0e2db9ba9d962ebb2f958d8b",
-                "reference": "0846bf0a5ed8ee9a0e2db9ba9d962ebb2f958d8b",
+                "url": "https://api.github.com/repos/agencms/auth/zipball/0a7a11de118bcfa82dd547eac9ea4dbf83af2b58",
+                "reference": "0a7a11de118bcfa82dd547eac9ea4dbf83af2b58",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 }
             ],
             "description": "Agencms Authentication Package",
-            "time": "2018-03-19T20:37:51+00:00"
+            "time": "2018-04-02T20:40:51+00:00"
         },
         {
             "name": "asm89/stack-cors",
