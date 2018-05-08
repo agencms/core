@@ -243,7 +243,7 @@ class Field
     }
 
     /**
-     * Set or get the key of a field. Returns chainable instance if a key is 
+     * Set or get the key of a field. Returns chainable instance if a key is
      * supplied, otherwise returns a string of the key.
      *
      * @param string $key
@@ -447,8 +447,6 @@ class Field
      */
     public function ratio(int $width, int $height, bool $resize = false)
     {
-        if (!$width || !$height) return $this;
-
         $this->field['ratio'] = "{$width}:{$height}";
 
         if ($resize) {
