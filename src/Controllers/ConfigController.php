@@ -15,7 +15,7 @@ class ConfigController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(Agencms::plugins());
+        $this->middleware(collect(Agencms::plugins())->sort()->all());
     }
 
     /**
