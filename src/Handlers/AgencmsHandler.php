@@ -55,6 +55,13 @@ class AgencmsHandler
         Agencms::appendRoute(
             Route::load('settings')
                 ->addGroup(
+                    Group::full('Site')->key('site')->addField(
+                        Field::string('title', 'Website Title'),
+                        Field::string('title_prefix', 'Title Prefix'),
+                        Field::string('title_suffix', 'Title Suffix')
+                    )
+                )
+                ->addGroup(
                     Group::full('Analytics')->key('analytics')->addField(
                         Field::string('ga_code', 'Google Analytics Id')
                     )
