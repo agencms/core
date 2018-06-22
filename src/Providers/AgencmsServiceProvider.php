@@ -9,11 +9,12 @@ use Silvanite\Brandenburg\Policy;
 use Agencms\Core\Commands\Install;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Blade;
-use Silvanite\Brandenburg\Permission;
 use Illuminate\Support\Facades\Route;
+use Silvanite\Brandenburg\Permission;
 use Agencms\Core\Support\RenderEngine;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\ServiceProvider;
+use Agencms\Core\Handlers\AgencmsHandler;
 use Agencms\Core\Listeners\EloquentListener;
 use Silvanite\Brandenburg\Traits\ValidatesPermissions;
 
@@ -45,6 +46,8 @@ class AgencmsServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerRenderEngine();
         $this->registerBladeExtensions();
+
+        AgencmsHandler::register();
     }
 
     private function enableCors()
