@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e70a02f348ce966bb6d3bb44e0c089f6",
+    "content-hash": "66f9e3fc5f1b2ce3f4c3dfde097498fd",
     "packages": [
         {
             "name": "agencms/auth",
@@ -53,6 +53,49 @@
             ],
             "description": "Agencms Authentication Package",
             "time": "2018-06-03T20:27:57+00:00"
+        },
+        {
+            "name": "agencms/laravel-preset",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/agencms/laravel-preset.git",
+                "reference": "7e1c8680d01128f3653cf208732df3caf13d6664"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/agencms/laravel-preset/zipball/7e1c8680d01128f3653cf208732df3caf13d6664",
+                "reference": "7e1c8680d01128f3653cf208732df3caf13d6664",
+                "shasum": ""
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "^3.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Agencms\\LaravelPreset\\AgencmsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Agencms\\LaravelPreset\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Mark",
+                    "email": "m2de@outlook.com"
+                }
+            ],
+            "description": "Front-end preset for Agencms if you wish to use the default views and templates",
+            "time": "2018-06-24T15:15:49+00:00"
         },
         {
             "name": "agencms/settings",
@@ -2463,49 +2506,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "agencms/laravel-preset",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/agencms/laravel-preset.git",
-                "reference": "7e1c8680d01128f3653cf208732df3caf13d6664"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/agencms/laravel-preset/zipball/7e1c8680d01128f3653cf208732df3caf13d6664",
-                "reference": "7e1c8680d01128f3653cf208732df3caf13d6664",
-                "shasum": ""
-            },
-            "require-dev": {
-                "squizlabs/php_codesniffer": "^3.1"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Agencms\\LaravelPreset\\AgencmsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Agencms\\LaravelPreset\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Mark",
-                    "email": "m2de@outlook.com"
-                }
-            ],
-            "description": "Front-end preset for Agencms if you wish to use the default views and templates",
-            "time": "2018-06-24T15:15:49+00:00"
-        },
         {
             "name": "squizlabs/php_codesniffer",
             "version": "3.2.3",
